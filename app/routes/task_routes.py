@@ -5,7 +5,6 @@ from app.utils.token_required import token_required
 
 task_bp = Blueprint('tasks', __name__)
 
-# ✅ CREATE task
 @task_bp.route('/', methods=['POST'])
 @token_required
 def create_task(user_id):
@@ -19,7 +18,6 @@ def create_task(user_id):
     db.session.commit()
     return jsonify({'message': 'Task created'}), 201
 
-# ✅ READ all tasks
 @task_bp.route('/', methods=['GET'])
 @token_required
 def get_tasks(user_id):
@@ -34,7 +32,6 @@ def get_tasks(user_id):
         })
     return jsonify(result)
 
-# ✅ UPDATE task
 @task_bp.route('/<int:id>', methods=['PUT'])
 @token_required
 def update_task(user_id, id):
@@ -46,7 +43,7 @@ def update_task(user_id, id):
     db.session.commit()
     return jsonify({'message': 'Task updated'})
 
-# ✅ DELETE task
+
 @task_bp.route('/<int:id>', methods=['DELETE'])
 @token_required
 def delete_task(user_id, id):
